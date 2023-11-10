@@ -128,5 +128,5 @@ function processVideo() {
 };
 
 // schedule the first one.
-setTimeout(processVideo, 1000);
+setTimeout(processVideo, 0);
 }
