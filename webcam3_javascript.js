@@ -33,16 +33,17 @@ function testLoad(){
     let url = 'https://github.com/opencv/opencv/raw/4.x/data/haarcascades/haarcascade_frontalface_default.xml';
     let faceCascadeFile = 'haarcascade_frontalface_default.xml'; // path to xml
     let classifier = new cv.CascadeClassifier();
-    utils.createFileFromUrl(url, faceCascadeFile, () => {
-    classifier.load(faceCascadeFile ); // in the callback, load the cascade from file 
-    })
-    // // classifier.load('../haarcascade_frontalface_default.xml');
-    // if(classifier.load('haarcascade_frontalface_default.xml'))
-    // {
-    //     console.log('yes');
-    // }else{
-    // console.log("cascade not loaded");
-    // }
+    utils.createFileFromUrl(faceCascadeFile, faceCascadeFile, () => {
+        classifier.load(faceCascadeFile); // in the callback, load the cascade from file 
+        })
+
+       
+        if(classifier.load('haarcascade_frontalface_default.xml'))
+        {
+         console.log('cascade loaded');
+        }else{
+        console.log("cascade not loaded");
+        }
     return classifier;
 }
 
@@ -68,31 +69,56 @@ function cpyVideo(){
 
 
         // generate certificer
-            let classifier = new cv.CascadeClassifier();
+            // let classifier = new cv.CascadeClassifier();
 
         // load pre-trained classifiers
             let utils = new Utils('errorMessage');
             let url = 'https://github.com/opencv/opencv/raw/4.x/data/haarcascades/haarcascade_frontalface_default.xml';
             let faceCascadeFile = '/haarcascade_frontalface_default.xml'; // path to xml
-            utils.createFileFromUrl(faceCascadeFile, faceCascadeFile, () => {
-            classifier.load(faceCascadeFile); // in the callback, load the cascade from file 
-            })
+            let faces = new cv.RectVector();
+            // utils.createFileFromUrl(faceCascadeFile, faceCascadeFile, () => {
+            // classifier.load(faceCascadeFile); // in the callback, load the cascade from file 
+            // })
 
-            // classifier.load('../haarcascade_frontalface_default.xml');
-            if(classifier.load('haarcascade_frontalface_default.xml'))
-            {
-                console.log('yes');
-            }else{
-            console.log("cascade not loaded");
+            // // classifier.load('../haarcascade_frontalface_default.xml');
+            // if(classifier.load('haarcascade_frontalface_default.xml'))
+            // {
+             
+            // }else{
+            // console.log("cascade not loaded");
+            // }
+            classifier = testLoad();
+
+            classifier.detectMultiScale(dst, faces, 1.1, 3, 0);
+            
+            // draw faces.
+            for (let i = 0; i < faces.size(); ++i) {
+                let face = faces.get(i);
+                let point1 = new cv.Point(face.x, face.y);
+                let point2 = new cv.Point(face.x + face.width, face.y + face.height);
+                cv.rectangle(dst, point1, point2, [0, 255, 0, 255], 5);
+            
+            if ((face.x >= pnt1.x)&&
+                (face.y >= pnt1.y)&&
+                (face.x + face.width <= pnt2.x)&&
+                (face.y + face.height <= pnt2.y)){
+                    
+                cv.rectangle(dst,pnt1, pnt2,[0,255,0,255],5)	
+                    
+                }else{
+                cv.rectangle(dst,pnt1, pnt2,[255,0,0,255],5)
+                }
             }
-
         cv.imshow("canvasOutput", dst);
         // schedule next one.
         let delay = 1000/FPS - (Date.now() - begin);
         setTimeout(processVideo, delay);
 }
 // schedule first one.
+let classifier = new cv.CascadeClassifier();
+classifier  = testLoad();
     setTimeout(processVideo, 0);
+
 }
 
 
