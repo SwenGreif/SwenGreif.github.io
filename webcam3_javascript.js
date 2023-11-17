@@ -11,6 +11,8 @@ const video = document.getElementById('videoInput');
 //         console.log("An error occurred! " + err);
 //     });
 
+
+
 function startVideo(){
     navigator.getUserMedia(
         { video: {} },
@@ -28,24 +30,6 @@ async function createFileFromUrl(url, filePath) {
         console.error(`Error creating file from ${url}: ${error}`);
     }
 }
-function testLoad(){
-    let utils = new Utils('errorMessage');
-    let url = 'https://github.com/opencv/opencv/raw/4.x/data/haarcascades/haarcascade_frontalface_default.xml';
-    let faceCascadeFile = 'haarcascade_frontalface_default.xml'; // path to xml
-    let classifier = new cv.CascadeClassifier();
-    utils.createFileFromUrl(faceCascadeFile, faceCascadeFile, () => {
-        classifier.load(faceCascadeFile); // in the callback, load the cascade from file 
-        })
-
-       
-        if(classifier.load('haarcascade_frontalface_default.xml'))
-        {
-         console.log('cascade loaded');
-        }else{
-        console.log("cascade not loaded");
-        }
-    return classifier;
-}
 
 
 function cpyVideo(){
@@ -53,28 +37,52 @@ function cpyVideo(){
     let context = canvasFrame.getContext("2d");
     let src = new cv.Mat(video.height, video.width, cv.CV_8UC4);
     let dst = new cv.Mat(video.height, video.width, cv.CV_8UC4);
+    let gray = new cv.Mat(video.height, video.width, cv.CV_8UC4);
     let cap = new cv.VideoCapture(video);
     let faces = new cv.RectVector();
     
     let FPS = 30;
+
+    function testLoad(){
+        let utils = new Utils('errorMessage');
+        // let url = 'https://github.com/opencv/opencv/raw/4.x/data/haarcascades/haarcascade_frontalface_default.xml';
+        let faceCascadeFile = 'haarcascade_frontalface_default.xml'; // path to xml
+        // let classifier = new cv.CascadeClassifier();
+        utils.createFileFromUrl(faceCascadeFile, faceCascadeFile, () => {
+            classifier.load(faceCascadeFile); // in the callback, load the cascade from file 
+            })
+        classifier.load('haarcascade_frontalface_default.xml');
+           
+            // if(classifier.load('haarcascade_frontalface_default.xml'))
+            // {
+            //  console.log('cascade loaded');
+            // }else{
+            // console.log("cascade not loaded");
+            // }
+        return classifier;
+    }
+    
+    let classifier = new cv.CascadeClassifier();
+    classifier = testLoad();
+
     function processVideo() {
         let begin = Date.now();
         cap.read(src);
-        // src.copyTo(dst);
-         cv.cvtColor(src, dst, cv.COLOR_RGBA2GRAY, 0);
+         src.copyTo(dst);
+         cv.cvtColor(src, gray, cv.COLOR_RGBA2GRAY, 0);
          
         let pnt1 = new cv.Point(video.width*0.2,video.height*0.1);
         let pnt2 = new cv.Point(video.width*0.8,video.height*0.9);
         cv.rectangle(dst,pnt1, pnt2,[255,0,0,255],5);
 
 
-        // generate certificer
-            let classifier = new cv.CascadeClassifier();
+        // // generate certificer
+            //  let classifier = new cv.CascadeClassifier();
 
-        // load pre-trained classifiers
-            let utils = new Utils('errorMessage');
-            let url = 'https://github.com/opencv/opencv/raw/4.x/data/haarcascades/haarcascade_frontalface_default.xml';
-            let faceCascadeFile = '/haarcascade_frontalface_default.xml'; // path to xml
+        // // load pre-trained classifiers
+        //     let utils = new Utils('errorMessage');
+        //     let url = 'https://github.com/opencv/opencv/raw/4.x/data/haarcascades/haarcascade_frontalface_default.xml';
+        //     let faceCascadeFile = '/haarcascade_frontalface_default.xml'; // path to xml
             let faces = new cv.RectVector();
             // utils.createFileFromUrl(faceCascadeFile, faceCascadeFile, () => {
             // classifier.load(faceCascadeFile); // in the callback, load the cascade from file 
@@ -87,9 +95,9 @@ function cpyVideo(){
             // }else{
             // console.log("cascade not loaded");
             // }
-            classifier = testLoad();
+            //  classifier = testLoad();
 
-            classifier.detectMultiScale(dst, faces, 1.1, 3, 0);
+            classifier.detectMultiScale(gray, faces, 1.1, 3, 0);
             
             // draw faces.
             for (let i = 0; i < faces.size(); ++i) {
