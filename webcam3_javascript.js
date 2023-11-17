@@ -69,7 +69,7 @@ function cpyVideo(){
 
 
         // generate certificer
-            // let classifier = new cv.CascadeClassifier();
+            let classifier = new cv.CascadeClassifier();
 
         // load pre-trained classifiers
             let utils = new Utils('errorMessage');
@@ -115,10 +115,7 @@ function cpyVideo(){
         setTimeout(processVideo, delay);
 }
 // schedule first one.
-let classifier = new cv.CascadeClassifier();
-classifier  = testLoad();
     setTimeout(processVideo, 0);
-
 }
 
 
