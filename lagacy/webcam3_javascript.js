@@ -41,7 +41,7 @@ function cpyVideo(){
     let cap = new cv.VideoCapture(video);
     let faces = new cv.RectVector();
     
-    let FPS = 30;
+    let FPS = 50;
 
     function testLoad(){
         let utils = new Utils('errorMessage');
@@ -49,7 +49,7 @@ function cpyVideo(){
         let faceCascadeFile = 'haarcascade_frontalface_default.xml'; // path to xml
         // let classifier = new cv.CascadeClassifier();
         utils.createFileFromUrl(faceCascadeFile, faceCascadeFile, () => {
-            classifier.load(faceCascadeFile); // in the callback, load the cascade from file 
+            console.log("loaded") ; // classifier.load(faceCascadeFile); // in the callback, load the cascade from file 
             })
         classifier.load('haarcascade_frontalface_default.xml');
            
