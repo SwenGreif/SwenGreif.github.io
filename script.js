@@ -44,7 +44,7 @@ video.addEventListener('play',  () =>{
     (box.y >= sollBereich.y)&&
     (box.x +box.width <= sollBereich.x + sollBereich.width)&&
     (box.y +box.height <= sollBereich.y + sollBereich.height));
-    let color = 'green';
+    let color = 'red';
     let sound = new Audio('ping.mp3');
 
     if ((box.x >= sollBereich.x)&&

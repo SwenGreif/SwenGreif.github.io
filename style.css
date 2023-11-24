@@ -1,13 +1,37 @@
-body {
+body{
+
+    background-color: rgb(44, 44, 44);
+}
+
+#VideoContainer {
     padding: 0;
     margin: 0;
     width: 100vw;
-    height: 100vh;
+    /* height: 100vh; */
     display: flex;
-    align-items: center;
+    align-items: start;
     justify-content: center;
 }
 
+#Anleitung { 
+    padding: 0;
+    margin: 0;
+    width: 100vw;
+    display: flex;
+    align-items: start;
+    justify-content: center;
+
+    color: white;
+   font-size: 20pt;
+}
+  
+
+h1{
+    align-items: center;
+    justify-content: center ;
+    display: flex;
+    color: white;
+}
 canvas {
     position: absolute;
 }
