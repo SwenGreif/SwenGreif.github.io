@@ -16,15 +16,20 @@
     <canvas id="canvasOutput" width="600" height="450" style="border: 1px solid black;"></canvas>
     <canvas id="canvasDetect" width="600" height="450" style="border: 1px solid black;"></canvas>
    
-      <video id="video" width="600" height="450" autoplay muted aria-label="Kamera: Bildauschnitt-Assistent" controls="controls "></video>
+      <video id="video" width="600" height="450" autoplay muted aria-label="Kamera: Bildauschnitt-Assistent" ></video>
     </div>
-    <div id="Anleitung">
-      <ol tabindex="-1">
+    <div>
+    <button id="startButton" autofocus onclick=" startFaceDetection()" style="display: none;">Gesichtserkennung neu starten!</button>
+    </div>
+    <div id="Anleitung" tabindex="0" >
+      <ol tabindex="0 " aria-label="Anleitung für den Bildausschnittassistenten.">
         <li> Ihre Webcam sollte automatisch starten. Wenn nicht erlauben sie dem Browser zugriff auf die Webcam.</li>
-        <li> Sobald dieses Programm zugriff auf Ihre Kamera hat, startet die Gesichtserkennung.</li>
-        <li> Der rot umrandete Bereich gibt die den Bereich an, in dem sich Ihr Gesicht befinden sollte. Dieser bereich ist der Soll-Bereich</li>
+        <li> Sobald dieses Programm Zugriff auf Ihre Kamera hat, startet die Gesichtserkennung.</li>
+        <li> Der rot umrandete Bereich gibt den Bereich an, in dem sich Ihr Gesicht befinden sollte. Dieser bereich ist der Soll-Bereich.</li>
         <li> Befindet sich Ihr Gesicht im Soll-Bereich, so wird der Rahmen grün.</li>
-        <li> Sobald Ihr Gesicht im Soll-Bereich erkannt wird, ertönt ein Glockenspiel. Sie sind nun gut sichtbar in ihrer Kamera.</li>
+        <li> Sobald Ihr Gesicht im Soll-Bereich erkannt wird, ertönt ein Glockenspiel. Sie sind nun gut sichtbar.</li>
+        <li> Änderen Sie Ihre Position in kleinen Schritten solange, bis der Soll-Bereich grün umrandet ist oder Sie das Glockenspiel höhren können.</li>
+        <li> Wenn Sie trotzdem keine positive Rückmeldung bekommen, benötigen sie vielleicht mehr Licht.</li>
       </ol>
 
     </div>

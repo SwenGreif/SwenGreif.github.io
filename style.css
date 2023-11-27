@@ -25,7 +25,13 @@ body{
    font-size: 20pt;
 }
   
-
+#startButton{
+    display: none;
+    align-items: start;
+    justify-content: center;
+    padding: 0;
+    margin: 0;
+}
 h1{
     align-items: center;
     justify-content: center ;
