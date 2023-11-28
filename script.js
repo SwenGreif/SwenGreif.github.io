@@ -82,6 +82,7 @@ function startFaceDetection(){
                 sound.play();
                await clearInterval(intervalID);
                document.getElementById("startButton").style.display = 'flex';
+               document.getElementById("startButton").focus();
                           
           }else if (((box.x < sollBereich.x)&&
               (box.y < sollBereich.y)&&
