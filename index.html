@@ -17,10 +17,14 @@
     <canvas id="canvasDetect" width="600" height="450" style="border: 1px solid black;"></canvas>
    
       <video id="video" width="600" height="450" autoplay muted aria-label="Kamera: Bildauschnitt-Assistent" ></video>
+
+      <div class="loader " id="loadAnimation" role="alert" aria-label="Gesichtserkännung wird vorbereitet."></div>
     </div>
+
     <div id="buttonContainer">
     <button id="startButton" autofocus onclick=" startFaceDetection()" style="display: none;">Gesichtserkennung neu starten!</button>
     </div>
+    
     <div id="Anleitung" tabindex="0" >
       <ol tabindex="0 " aria-label="Anleitung für den Bildausschnittassistenten.">
         <li> Ihre Webcam sollte automatisch starten. Wenn nicht erlauben Sie dem Browser zugriff auf die Webcam.</li>
