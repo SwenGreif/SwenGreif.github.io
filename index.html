@@ -13,25 +13,25 @@
   <!-- <video id="video" width="600" height="450" autoplay> -->
     <h1 tabindex="0"> Bildauschnitt Assistent</h1>
     <div id="VideoContainer">
-    <canvas id="canvasOutput" width="600" height="450" style="border: 1px solid black;"></canvas>
-    <canvas id="canvasDetect" width="600" height="450" style="border: 1px solid black;"></canvas>
-   
+      <!-- Canvas frames for drawing of face detections and "sollBereich" -->
+      <canvas id="canvasOutput" width="600" height="450" style="border: 1px solid black;"></canvas>
+      <canvas id="canvasDetect" width="600" height="450" style="border: 1px solid black;"></canvas>
+      <!-- webcam stream  -->
       <video id="video" width="600" height="450" autoplay muted aria-label="Kamera: Bildauschnitt-Assistent" ></video>
-
+        <!-- loading animation for better UX, used alert role to inform user of loading status, only good because there is only on loading element, when more use "role='progressbar'" -->
       <div class="loader " id="loadAnimation" role="alert" aria-label="Gesichtserkännung wird vorbereitet."></div>
     </div>
-
+    <!-- button for restarting of face detection -->
     <div id="buttonContainer">
-    <button id="startButton" autofocus onclick=" startFaceDetection()" style="display: none;">Gesichtserkennung neu starten!</button>
+      <button id="startButton" autofocus onclick=" startFaceDetection()" style="display: none;">Gesichtserkennung neu starten!</button>
     </div>
-    
+    <!-- given instructions are in simple speech uns tabindex to make it focusable, use label to give kontext to users -->
     <div id="Anleitung" tabindex="0" >
       <ol tabindex="0 " aria-label="Anleitung für den Bildausschnittassistenten.">
-        <li> Ihre Webcam sollte automatisch starten. Wenn nicht erlauben Sie dem Browser zugriff auf die Webcam.</li>
-        <li> Sobald dieses Programm Zugriff auf Ihre Kamera hat, startet die Gesichtserkennung.</li>
-        <li> Der rot umrandete Bereich gibt den Bereich an, in dem sich Ihr Gesicht befinden sollte. Dieser Bereich ist der Soll-Bereich.</li>
-        <li> Befindet sich Ihr Gesicht im Soll-Bereich, so wird der Rahmen grün.</li>
-        <li> Sobald Ihr Gesicht im Soll-Bereich erkannt wird, ertönt ein Glockenspiel. Sie sind nun gut sichtbar.</li>
+        <li> Ihre Webcam sollte automatisch starten. Wenn nicht erlauben Sie dem Browser Zugriff auf die Webcam.</li>
+        <li> Die Gesichtserkennung startet automatisch.</li>
+        <li> Der Rahmen gibt den Bereich an, in dem sich Ihr Gesicht befinden sollte.</li>
+        <li> Befindet sich Ihr Gesicht im Soll-Bereich, wechselt die Farbe des Rahmens von rot nach grün und es ertönt ein Glockensignal.</li>
         <li> Änderen Sie Ihre Position in kleinen Schritten solange, bis der Soll-Bereich grün umrandet ist oder Sie das Glockenspiel hören können.</li>
         <li> Wenn Sie trotzdem keine positive Rückmeldung bekommen, benötigen Sie vielleicht mehr Licht.</li>
       </ol>
