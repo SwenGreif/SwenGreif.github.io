@@ -56,7 +56,7 @@ video.addEventListener('play',  () =>{
 
 //function for the face detection
 function startFaceDetection(){
-  
+
   //reset default of the button, hidden by default and when facedetection is running
   document.getElementById("startButton").style.display = 'none';
   
@@ -142,7 +142,8 @@ function startFaceDetection(){
           boxOptions.boxColor = 'red';
           const drawBox = new faceapi.draw.DrawBox(sollBereich, boxOptions);
           drawBox.draw(document.getElementById('canvasDetect'));
-          noFace.play();
+          //sound indicates that there is no face, but can be destracting for screen reader users
+          // noFace.play();
           console.log(error + 'no faces detected');
         }
     //set Intervall shorter to give tunes time to play till end befor new tune is started
