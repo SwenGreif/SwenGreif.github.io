@@ -139,6 +139,7 @@ function startFaceDetection(){
 
         // if faceapi can't find any face, this error is catched and an info sound is played to inform the user
         }catch (error){
+          document.getElementById('loadAnimation').style.display ='none';
           boxOptions.boxColor = 'red';
           const drawBox = new faceapi.draw.DrawBox(sollBereich, boxOptions);
           drawBox.draw(document.getElementById('canvasDetect'));
