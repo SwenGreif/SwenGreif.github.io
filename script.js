@@ -106,7 +106,7 @@ function startFaceDetection(){
           }else if (((box.x < sollBereich.x)||
               (box.y < sollBereich.y)||
               (box.x +box.width > sollBereich.x + sollBereich.width)||
-              (box.y +box.height > sollBereich.y + sollBereich.height))|| !box.length) {
+              (box.y +box.height > sollBereich.y + sollBereich.height))) { //|| !box.length
         
                 boxOptions.boxColor= 'red';
                 
@@ -144,7 +144,7 @@ function startFaceDetection(){
           const drawBox = new faceapi.draw.DrawBox(sollBereich, boxOptions);
           drawBox.draw(document.getElementById('canvasDetect'));
           //sound indicates that there is no face, but can be destracting for screen reader users
-          // noFace.play();
+          noFace.play();
           console.log(error + 'no faces detected');
         }
     //set Intervall shorter to give tunes time to play till end befor new tune is started
